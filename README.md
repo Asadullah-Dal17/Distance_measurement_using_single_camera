@@ -17,14 +17,7 @@ python distance.py
 python3 distance.py
 
 
-The Focal Length finder Function Tacks Three Arguments:
-
-```measured_distance``` It is distance which we have measured while capturing reference image. ***From object to Camera*** which was ```Known_distance = 30 #centimeter```  
-
-
-```real_width``` Its measure with width of object in real world, here i measure the width of face in real world which was ```Known_width =14.3 #centimeter```  
-
-```width_in_rf_image``` it width of object in the image/frame it will be in **pixels**
+### *Focal Length Finder Function Description* 
 
 ```python
 # focal length finder function
@@ -33,6 +26,21 @@ def FocalLength(measured_distance, real_width, width_in_rf_image):
     return focal_length
 
 ```
+The Focal Length finder Function Tacks Three Arguments:
+
+```measured_distance``` It is distance which we have measured while capturing reference image. ***From object to Camera*** which is ```Known_distance = 30 #centimeter```  
+
+
+```real_width``` Its measure with width of object in real world, here i measure the width of face in real world which was ```Known_width =14.3 #centimeter```  
+
+```width_in_rf_image``` it width of object in the image/frame it will be in **pixels**
+
+
+
+
+
+
+
 
 
 Youtube Video: https://youtu.be/zzJfAw3ASzY
