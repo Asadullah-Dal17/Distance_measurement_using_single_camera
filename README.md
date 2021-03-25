@@ -61,6 +61,11 @@ if You found this Helpful, please star it.
 
 if you have any Query feel free to ask me on my Social Media.
 
+### Updated_Distance code Visual demo
+
+
+<img alt="Gif Update Distnace code " src="Update-Distance-Output.gif">
+
 ## Join Me on Social Media
 
 <a href="https://www.youtube.com/c/aiphile"> <img alt="AiPhile Youtube" src="icons/youtube.svg"  width="60" height="60">
