@@ -36,12 +36,42 @@ The Focal Length finder Function Tacks Three Arguments:
 ```width_in_rf_image``` it width of object in the image/frame it will be in **pixels**
 
 
+### *Distance Finder Function Description* 
+
+```python
+# distance estimation function
+def Distance_finder (Focal_Length, real_face_width, face_width_in_frame):
+    distance = (real_face_width * Focal_Length)/face_width_in_frame
+    return distance
+
+```
+This Funciton Taks Three Argument, 
+
+``` Focal_Length``` it is focal length, out of **FocalLength** finder function.
+
+```real_face_width``` Its measure with width of object in real world, here i measure the width of face in real world which was ```Known_width =14.3 #centimeter```  
+
+```face_width_in_frame``` width of face in the frame, unit will pixels here.
 
 
-
-
-
-
-
+You can Which my Video on the Youtube. As well
 Youtube Video: https://youtu.be/zzJfAw3ASzY
+
+if You found this Helpful, please star it.
+
+if you have any Query feel free to ask me on my Social Media.
+
+## Join Me on Social Media
+
+<a href="https://www.youtube.com/c/aiphile"> <img alt="AiPhile Youtube" src="icons/youtube.svg"  width="60" height="60">
+</a>
+<a href="https://www.facebook.com/AIPhile17">
+<img alt="AiPhile Facebook" src="icons/facebook.svg"  width="60" height="60">
+</a>
+<a href="https://www.instagram.com/aiphile17/"> <img alt="AiPhile Insta" src="icons/insta.svg"  width="60" height="60">
+</a>
+<a href="https://github.com/Asadullah-Dal17"> <img alt="Github" src="icons/github.svg"  width="60" height="60">
+</a>
+
+
 
