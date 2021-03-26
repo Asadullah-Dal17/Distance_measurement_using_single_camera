@@ -1,9 +1,10 @@
 import cv2
 # variables
 # distance from camera to object(face) measured
-Known_distance = 30 #centimeter
-# width of face in the real world or Object Plane
-Known_width =14.3 #centimeter
+Known_distance =31.5 # Inches
+#mine is 14.3 something, measure your face width, are google it 
+Known_width=5.7 #Inches
+
 # Colors  >>> BGR Format(BLUE, GREEN, RED)
 GREEN = (0,255,0) 
 RED = (0,0,255)
@@ -16,7 +17,7 @@ fonts2 = cv2.FONT_HERSHEY_SCRIPT_SIMPLEX
 fonts3 =cv2.FONT_HERSHEY_COMPLEX_SMALL
 fonts4 =cv2.FONT_HERSHEY_TRIPLEX
 # Camera Object 
-cap = cv2.VideoCapture(0) # Number According to your Camera
+cap = cv2.VideoCapture(1) # Number According to your Camera
 Distance_level =0
 
 # Define the codec and create VideoWriter object
@@ -66,8 +67,8 @@ def face_data(image, CallOut, Distance_level):
         # cv2.circle(image, (face_center_x, face_center_y),5, (255,0,255), 3 )
         if CallOut==True:
             # cv2.line(image, (x,y), (face_center_x,face_center_y ), (155,155,155),1)
-            cv2.line(image, (x,y-11), (x+210, y-11), (YELLOW), 25)
-            cv2.line(image, (x,y-11), (x+Distance_level, y-11), (GREEN), 25)
+            cv2.line(image, (x,y-11), (x+180, y-11), (YELLOW), 20)
+            cv2.line(image, (x,y-11), (x+Distance_level, y-11), (GREEN), 18)
             
             # cv2.circle(image, (face_center_x, face_center_y),2, (255,0,255), 1 )
             # cv2.circle(image, (x, y),2, (255,0,255), 1 )
@@ -101,7 +102,7 @@ while True:
             # Drwaing Text on the screen
             Distance_level= int(Distance)
 
-            cv2.putText(frame, f"Distance {Distance} CM", (face_x-6,face_y-6), fonts,0.7, (BLACK),2)
+            cv2.putText(frame, f"Distance {Distance} Inches", (face_x-6,face_y-6), fonts,0.5, (BLACK),2)
     cv2.imshow("frame", frame )
     # out.write(frame)
 
