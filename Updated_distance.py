@@ -28,14 +28,48 @@ out = cv2.VideoWriter('output21.mp4',fourcc, 30.0, (640,480))
 face_detector = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 # focal length finder function
 def FocalLength(measured_distance, real_width, width_in_rf_image):
+        # Function Discrption (Doc String)
+    '''
+    This Function Calculate the Focal Length(distance between lens to CMOS sensor), it is simple constant we can find by using 
+    MEASURED_DISTACE, REAL_WIDTH(Actual width of object) and WIDTH_OF_OBJECT_IN_IMAGE 
+    :param1 Measure_Distance(int): It is distance measured from object to the Camera while Capturing Reference image
+    
+    :param2 Real_Width(int): It is Actual width of object, in real world (like My face width is = 5.7 Inches)
+    :param3 Width_In_Image(int): It is object width in the frame /image in our case in the reference image(found by Face detector) 
+    :retrun Focal_Length(Float):
+    '''
     focal_length = (width_in_rf_image* measured_distance)/ real_width
     return focal_length
 # distance estimation function
 def Distance_finder (Focal_Length, real_face_width, face_width_in_frame):
+    '''
+    This Function simply Estimates the distance between object and camera using arguments(Focal_Length, Actual_object_width, Object_width_in_the_image)
+    :param1 Focal_length(float): return by the Focal_Length_Finder function
+    
+    :param2 Real_Width(int): It is Actual width of object, in real world (like My face width is = 5.7 Inches)
+    :param3 object_Width_Frame(int): width of object in the image(frame in our case, using Video feed)
+    :return Distance(float) : distance Estimated  
+    
+    '''
     distance = (real_face_width * Focal_Length)/face_width_in_frame
     return distance
+
 #face detection Fauction 
 def face_data(image, CallOut, Distance_level):
+    '''
+    
+    This function Detect face and Draw Rectangle and display the distance over Screen
+    
+    :param1 Image(Mat): simply the frame 
+    :param2 Call_Out(bool): If want show Distance and Rectangle on the Screen or not
+    :param3 Distance_Level(int): which change the line according the Distance changes(Intractivate)
+    :return1  face_width(int): it is width of face in the frame which allow us to calculate the distance and find focal length
+    :return2 face(list): length of face and (face paramters)
+    :return3 face_center_x: face centroid_x coordinate(x)
+    :return4 face_center_y: face centroid_y coordinate(y)
+
+    '''
+
     face_width = 0
     face_x, face_y =0,0
     face_center_x =0
@@ -72,7 +106,7 @@ def face_data(image, CallOut, Distance_level):
             
             # cv2.circle(image, (face_center_x, face_center_y),2, (255,0,255), 1 )
             # cv2.circle(image, (x, y),2, (255,0,255), 1 )
-           
+                       
         # face_x = x
         # face_y = y
 
