@@ -73,19 +73,19 @@ if you have any Query feel free to ask me on my Social Media.
 ### Updated_Distance.py Looks something likes This.
 
 
-<img alt="Gif Update Distnace code " src="updated-Distance-Output.gif">
+<img alt="Gif Update Distnace code " src="Ouput_Updated_distance.gif">
 
 
 I have also create  <a href ="https://github.com/Asadullah-Dal17/Face-Following-Robot-using-Distance-Estimation"> <strong>Face Following Robot </strong> </a> which use distance Estimation, if you are interested you can Watch my<a href ="https://youtu.be/5FSOZe96kNg"> <strong>Youtube Video</strong>  </a> 
 ## Join Me on Social Media
 
-<a href="https://www.youtube.com/c/aiphile"> <img alt="AiPhile Youtube" src="icons/youtube.svg"  width="60" height="60">
+<a href="https://www.youtube.com/c/aiphile"> <img alt="AiPhile Youtube" src="icons/youtub-icon.svg"  width="60" height="60">
 </a>
 <a href="https://www.facebook.com/AIPhile17">
-<img alt="AiPhile Facebook" src="icons/facebook.svg"  width="60" height="60">
+<img alt="AiPhile Facebook" src="icons/facebook-icon.svg"  width="60" height="60">
 </a>
-<a href="https://www.instagram.com/aiphile17/"> <img alt="AiPhile Insta" src="icons/insta.svg"  width="60" height="60">
+<a href="https://www.instagram.com/aiphile17/"> <img alt="AiPhile Insta" src="icons/instagram-icon.svg"  width="60" height="60">
 </a>
-<a href="https://github.com/Asadullah-Dal17"> <img alt="Github" src="icons/github.svg"  width="60" height="60">
+<a href="https://github.com/Asadullah-Dal17"> <img alt="Github" src="icons/github-icon.svg"  width="60" height="60">
 </a>
 
