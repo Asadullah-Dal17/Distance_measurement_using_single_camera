@@ -13,8 +13,18 @@ pip3 install opencv-python
 # Run the code
 ## windows:
 python distance.py
+
+------ OR ---------
+
+python Updated_distance.py
+
 ## linux or Mac: 
 python3 distance.py
+
+------ OR ---------
+
+python3 Updated_distance.py
+
 
 
 ### *Focal Length Finder Function Description* 
@@ -28,7 +38,7 @@ def FocalLength(measured_distance, real_width, width_in_rf_image):
 ```
 The Focal Length finder Function Tacks Three Arguments:
 
-```measured_distance``` It is distance which we have measured while capturing reference image. ***From object to Camera*** which is ```Known_distance = 30 #centimeter```  
+```measured_distance``` It is distance which we have measured while capturing reference image. ***From object to Camera*** which is ```Known_distance = 72.2 #centimeter```  
 
 
 ```real_width``` Its measure with width of object in real world, here i measure the width of face in real world which was ```Known_width =14.3 #centimeter```  
@@ -61,11 +71,13 @@ if You found this Helpful, please star it.
 
 if you have any Query feel free to ask me on my Social Media.
 
-### Updated_Distance code Visual demo
+### Updated_Distance.py Looks something likes This.
 
 
 <img alt="Gif Update Distnace code " src="Update-Distance-Output.gif">
 
+
+I have also create  <a href ="https://github.com/Asadullah-Dal17/Face-Following-Robot-using-Distance-Estimation"> <strong>Face Following Robot </strong> </a> which use distance Estimation, if you are interested you can Watch my<a href ="https://youtu.be/5FSOZe96kNg"> <strong>Youtube Video</strong>  </a> 
 ## Join Me on Social Media
 
 <a href="https://www.youtube.com/c/aiphile"> <img alt="AiPhile Youtube" src="icons/youtube.svg"  width="60" height="60">
@@ -77,6 +89,4 @@ if you have any Query feel free to ask me on my Social Media.
 </a>
 <a href="https://github.com/Asadullah-Dal17"> <img alt="Github" src="icons/github.svg"  width="60" height="60">
 </a>
-
-
 
