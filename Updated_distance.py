@@ -1,7 +1,7 @@
 import cv2
 # variables
 # distance from camera to object(face) measured
-Known_distance =31.5 # Inches
+Known_distance =30 # Inches
 #mine is 14.3 something, measure your face width, are google it 
 Known_width=5.7 #Inches
 
@@ -17,12 +17,12 @@ fonts2 = cv2.FONT_HERSHEY_SCRIPT_SIMPLEX
 fonts3 =cv2.FONT_HERSHEY_COMPLEX_SMALL
 fonts4 =cv2.FONT_HERSHEY_TRIPLEX
 # Camera Object 
-cap = cv2.VideoCapture(1) # Number According to your Camera
+cap = cv2.VideoCapture(0) # Number According to your Camera
 Distance_level =0
 
 # Define the codec and create VideoWriter object
-# fourcc = cv2.VideoWriter_fourcc(*'XVID')
-# out = cv2.VideoWriter('output.avi',fourcc, 20.0, (640,480))
+fourcc = cv2.VideoWriter_fourcc(*'XVID')
+out = cv2.VideoWriter('output21.mp4',fourcc, 30.0, (640,480))
 
 # face detector object
 face_detector = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
@@ -104,7 +104,7 @@ while True:
 
             cv2.putText(frame, f"Distance {Distance} Inches", (face_x-6,face_y-6), fonts,0.5, (BLACK),2)
     cv2.imshow("frame", frame )
-    # out.write(frame)
+    out.write(frame)
 
 
     if cv2.waitKey(1)==ord("q"):
