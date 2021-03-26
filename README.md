@@ -1,33 +1,42 @@
-# Distance_measurement_using_single_camera
+# Distance measurement using single:one:camera :camera:
 
+You can use this code to measuere the distance from object to camera using ***single camera*** :camera: .
+
+I have detect a face in the frame and estimated a distance using the width of face.
 
 ## Clone this Repo:
 git clone https://github.com/Asadullah-Dal17/Distance_measurement_using_single_camera
 
-## install Opencv-python on Windows 
-pip install opencv-python
+## install Opencv-python 
 
-install Opencv-python on Linux or Mac
-pip3 install opencv-python
+- Windows 
+  
+    pip install opencv-python
 
-# Run the code
-## windows:
-python distance.py
+- *install Opencv-python on Linux or Mac*
 
------- OR ---------
+    pip3 install opencv-python
 
-python Updated_distance.py
+## Run the code
+-  windows: :point_down:
+  
+    python distance.py
 
-## linux or Mac: 
-python3 distance.py
+    ------ OR ---------
 
------- OR ---------
+    python Updated_distance.py
 
-python3 Updated_distance.py
+- linux or Mac :point_down:
+   
+    python3 distance.py
+
+    ------ OR ---------
+
+    python3 Updated_distance.py
 
 
 
-### *Focal Length Finder Function Description* 
+### :bulb:*Focal Length Finder Function Description* :bulb:
 
 ```python
 # focal length finder function
@@ -46,7 +55,7 @@ The Focal Length finder Function Tacks Three Arguments:
 ```width_in_rf_image``` it width of object in the image/frame it will be in **pixels**
 
 
-### *Distance Finder Function Description* 
+### :bulb:*Distance Finder Function Description* :bulb:
 
 ```python
 # distance estimation function
@@ -66,9 +75,7 @@ This Funciton Taks Three Argument,
 
 You can Which my Video on the Youtube: https://youtu.be/zzJfAw3ASzY
 
-if You found this Helpful, please star it .
 
-if you have any Query feel free to ask me on my Social Media.
 
 ### Updated_Distance.py Looks something likes This.
 
@@ -77,7 +84,13 @@ if you have any Query feel free to ask me on my Social Media.
 
 
 I have also create  <a href ="https://github.com/Asadullah-Dal17/Face-Following-Robot-using-Distance-Estimation"> <strong>Face Following Robot </strong> </a> which use distance Estimation, if you are interested you can Watch my<a href ="https://youtu.be/5FSOZe96kNg"> <strong>Youtube Video</strong>  </a> 
-## Join Me on Social Media
+
+
+if You found this Helpful, please star :star: it.
+
+if you have any Query feel free to ask me on my Social Media.
+## :green_heart: Join Me on Social Media :green_heart:
+
 
 <a href="https://www.youtube.com/c/aiphile"> <img alt="AiPhile Youtube" src="icons/youtub-icon.svg"  width="60" height="60">
 </a>
