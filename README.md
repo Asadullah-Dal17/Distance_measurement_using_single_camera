@@ -73,7 +73,7 @@ if you have any Query feel free to ask me on my Social Media.
 ### Updated_Distance.py Looks something likes This.
 
 
-<img alt="Gif Update Distnace code " src="Update-Distance-Output.gif">
+<img alt="Gif Update Distnace code " src="updated-Distance-Output.gif">
 
 
 I have also create  <a href ="https://github.com/Asadullah-Dal17/Face-Following-Robot-using-Distance-Estimation"> <strong>Face Following Robot </strong> </a> which use distance Estimation, if you are interested you can Watch my<a href ="https://youtu.be/5FSOZe96kNg"> <strong>Youtube Video</strong>  </a> 
