@@ -47,7 +47,7 @@ def FocalLength(measured_distance, real_width, width_in_rf_image):
 ```
 The Focal Length finder Function Tacks Three Arguments:
 
-```measured_distance``` It is distance which we have measured while capturing reference image. ***From object to Camera*** which is ```Known_distance = 72.2 #centimeter```  
+```measured_distance``` It is distance which we have measured while capturing reference image:straight_ruler:. ***From object to Camera*** which is ```Known_distance = 72.2 #centimeter```  
 
 
 ```real_width``` Its measure with width of object in real world, here i measure the width of face in real world which was ```Known_width =14.3 #centimeter```  
