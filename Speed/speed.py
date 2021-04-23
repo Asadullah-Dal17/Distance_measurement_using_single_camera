@@ -31,6 +31,7 @@ cap = cv2.VideoCapture(1)  # Number According to your Camera
 Distance_level = 0
 travedDistance = 0
 changeDistance = 0
+velocity = 0
 
 # Define the codec and create VideoWriter object
 fourcc = cv2.VideoWriter_fourcc(*'XVID')
@@ -167,15 +168,18 @@ while True:
             Distance_level = int(Distance)
             Finaltime = time.time()
             timeTaken = Finaltime - intialTime
-            if changeDistance != O:
+            if changeDistance != 0:
 
-                travedDistance = distance - changeDistance
+                travedDistance = Distance - changeDistance
 
-            print(timeTaken)
+                velocity = speedFinder(travedDistance, timeTaken)
+                print(velocity)
 
-            # vlocity = speedFinder(Distance2, timeTaken)
-            # print(vlocity)
+            # print(travedDistance)
+
             changeDistance = Distance2
+            cv2.putText(
+                frame, f"Velocity: {round(velocity,2)} inch/s", (30, 50), fonts, 0.5, BLACK, 2)
             cv2.putText(frame, f"Distance {Distance} Inches",
                         (face_x-6, face_y-6), fonts, 0.5, (BLACK), 2)
     cv2.imshow("frame", frame)
