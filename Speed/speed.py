@@ -1,4 +1,6 @@
 import cv2
+import time
+
 # variables
 # distance from camera to object(face) measured
 Known_distance = 30  # Inches
@@ -27,6 +29,8 @@ fonts4 = cv2.FONT_HERSHEY_TRIPLEX
 # Camera Object
 cap = cv2.VideoCapture(1)  # Number According to your Camera
 Distance_level = 0
+travedDistance = 0
+changeDistance = 0
 
 # Define the codec and create VideoWriter object
 fourcc = cv2.VideoWriter_fourcc(*'XVID')
@@ -66,8 +70,13 @@ def Distance_finder(Focal_Length, real_face_width, face_width_in_frame):
     distance = (real_face_width * Focal_Length)/face_width_in_frame
     return distance
 
-# face detection Fauction
 
+def speedFinder(distance, takenTime):
+    speed = distance/takenTime
+    return speed
+
+
+# face detection Fauction
 
 def face_data(image, CallOut, Distance_level):
     '''
@@ -143,6 +152,7 @@ while True:
     _, frame = cap.read()
     # calling face_data function
     # Distance_leve =0
+    intialTime = time.time()
 
     face_width_in_frame, Faces, FC_X, FC_Y = face_data(
         frame, True, Distance_level)
@@ -150,12 +160,22 @@ while True:
     for (face_x, face_y, face_w, face_h) in Faces:
         if face_width_in_frame != 0:
 
-            Distance = Distance_finder(
+            Distance2 = Distance_finder(
                 Focal_length_found, Known_width, face_width_in_frame)
-            Distance = round(Distance, 2)
+            Distance = round(Distance2, 2)
             # Drwaing Text on the screen
             Distance_level = int(Distance)
+            Finaltime = time.time()
+            timeTaken = Finaltime - intialTime
+            if changeDistance != O:
 
+                travedDistance = distance - changeDistance
+
+            print(timeTaken)
+
+            # vlocity = speedFinder(Distance2, timeTaken)
+            # print(vlocity)
+            changeDistance = Distance2
             cv2.putText(frame, f"Distance {Distance} Inches",
                         (face_x-6, face_y-6), fonts, 0.5, (BLACK), 2)
     cv2.imshow("frame", frame)
