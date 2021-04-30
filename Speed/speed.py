@@ -160,12 +160,13 @@ cv2.imshow("ref_image", ref_image)
 speedList = []
 DistanceList = []
 averageSpeed = 0
+intialDisntace = 0
+
 while True:
     _, frame = cap.read()
     # calling face_data function
     # Distance_leve =0
     intialTime = time.time()
-
     face_width_in_frame, Faces, FC_X, FC_Y = face_data(
         frame, True, Distance_level)
     # finding the distance by calling function Distance finder
@@ -180,42 +181,31 @@ while True:
             roundedDistance = round((avergDistnce*0.0254), 2)
             # Drwaing Text on the screen
             Distance_level = int(Distance)
-            Finaltime = time.time()
-            timeTaken = Finaltime - intialTime
-            if changeDistance != 0:
+            if intialDisntace != 0:
 
-                travedDistance = Distance - changeDistance
-                distanceInMeters = travedDistance * 0.0254
-
-                # print(distanceInMeters)
+                changeDistance = Distance - intialDisntace
+                distanceInMeters = changeDistance * 0.0254
 
                 velocity = speedFinder(distanceInMeters, changeInTime)
 
                 speedList.append(velocity)
 
                 averageSpeed = averageFinder(speedList, 6)
+            # intial Distance
+            intialDisntace = avergDistnce
 
-                # print(len(speedList))
-                # sizeOfList = len(speedList)
-                # # print(sizeOfList)
-                # last6Element = sizeOfList - 6
-
-                # print(speedList[last6Element:])
-                # if len(speedList) > 5:
-                #     newValue = 0
-                #     for value in speedList[:-5]:
-                #         newValue += value
-                #     print(newValue/5)
-
-                # print(velocity)
-
-            # print(travedDistance)
-
-            changeDistance = avergDistnce
             changeInTime = time.time() - intialTime
+            # print(changeInTime)
 
+            cv2.line(frame, (25, 45), (180, 45), (ORANGE), 26)
+            cv2.line(frame, (25, 45), (180, 45), (GREEN), 20)
+            # cv2.line(image, (x, y-11), (x+180, y-11), (YELLOW), 20)
+            # cv2.line(image, (x, y-11), (x+Distance_level, y-11), (GREEN), 18)
+            if averageSpeed < 0:
+                averageSpeed = averageSpeed * -1
             cv2.putText(
                 frame, f"Speed: {round(averageSpeed,2)} m/s", (30, 50), fonts, 0.5, BLACK, 2)
+
             cv2.putText(frame, f"Distance {roundedDistance} meter",
                         (face_x-6, face_y-6), fonts, 0.5, (BLACK), 2)
     cv2.imshow("frame", frame)
