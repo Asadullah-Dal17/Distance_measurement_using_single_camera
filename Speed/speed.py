@@ -27,7 +27,8 @@ fonts2 = cv2.FONT_HERSHEY_SCRIPT_SIMPLEX
 fonts3 = cv2.FONT_HERSHEY_COMPLEX_SMALL
 fonts4 = cv2.FONT_HERSHEY_TRIPLEX
 # Camera Object
-cap = cv2.VideoCapture(1)  # Number According to your Camera
+capID = 0
+cap = cv2.VideoCapture(capID)  # Number According to your Camera
 Distance_level = 0
 travedDistance = 0
 changeDistance = 0
@@ -139,6 +140,14 @@ def face_data(image, CallOut, Distance_level):
     return face_width, faces, face_center_x, face_center_y
 
 
+def averageFinder(valuesList, numberElements):
+    sizeOfList = len(valuesList)
+    lastMostElement = sizeOfList - numberElements
+    lastPart = valuesList[lastMostElement:]
+    average = sum(lastPart)/(len(lastPart))
+    return average
+
+
 # reading reference image from directory
 ref_image = cv2.imread("../Ref_image.png")
 
@@ -148,7 +157,9 @@ Focal_length_found = FocalLength(
 print(Focal_length_found)
 
 cv2.imshow("ref_image", ref_image)
-
+speedList = []
+DistanceList = []
+averageSpeed = 0
 while True:
     _, frame = cap.read()
     # calling face_data function
@@ -161,9 +172,12 @@ while True:
     for (face_x, face_y, face_w, face_h) in Faces:
         if face_width_in_frame != 0:
 
-            Distance2 = Distance_finder(
+            Distance = Distance_finder(
                 Focal_length_found, Known_width, face_width_in_frame)
-            Distance = round(Distance2, 2)
+            DistanceList.append(Distance)
+            avergDistnce = averageFinder(DistanceList, 6)
+            # print(avergDistnce)
+            roundedDistance = round((avergDistnce*0.0254), 2)
             # Drwaing Text on the screen
             Distance_level = int(Distance)
             Finaltime = time.time()
@@ -171,16 +185,38 @@ while True:
             if changeDistance != 0:
 
                 travedDistance = Distance - changeDistance
+                distanceInMeters = travedDistance * 0.0254
 
-                velocity = speedFinder(travedDistance, timeTaken)
-                print(velocity)
+                # print(distanceInMeters)
+
+                velocity = speedFinder(distanceInMeters, changeInTime)
+
+                speedList.append(velocity)
+
+                averageSpeed = averageFinder(speedList, 6)
+
+                # print(len(speedList))
+                # sizeOfList = len(speedList)
+                # # print(sizeOfList)
+                # last6Element = sizeOfList - 6
+
+                # print(speedList[last6Element:])
+                # if len(speedList) > 5:
+                #     newValue = 0
+                #     for value in speedList[:-5]:
+                #         newValue += value
+                #     print(newValue/5)
+
+                # print(velocity)
 
             # print(travedDistance)
 
-            changeDistance = Distance2
+            changeDistance = avergDistnce
+            changeInTime = time.time() - intialTime
+
             cv2.putText(
-                frame, f"Velocity: {round(velocity,2)} inch/s", (30, 50), fonts, 0.5, BLACK, 2)
-            cv2.putText(frame, f"Distance {Distance} Inches",
+                frame, f"Speed: {round(averageSpeed,2)} m/s", (30, 50), fonts, 0.5, BLACK, 2)
+            cv2.putText(frame, f"Distance {roundedDistance} meter",
                         (face_x-6, face_y-6), fonts, 0.5, (BLACK), 2)
     cv2.imshow("frame", frame)
     out.write(frame)
