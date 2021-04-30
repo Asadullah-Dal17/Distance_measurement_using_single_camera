@@ -24,20 +24,20 @@ WHITE = (255, 255, 255)
 fonts = cv2.FONT_HERSHEY_COMPLEX
 cap = cv2.VideoCapture(1)
 # face detector object
-face_detector = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
+face_detector = cv2.CascadeClassifier("../haarcascade_frontalface_default.xml")
 # focal length finder function
 
 
 def FocalLength(measured_distance, real_width, width_in_rf_image):
     '''
-This Function Calculate the Focal Length(distance between lens to CMOS sensor), it is simple constant we can find by using 
-MEASURED_DISTACE, REAL_WIDTH(Actual width of object) and WIDTH_OF_OBJECT_IN_IMAGE 
-:param1 Measure_Distance(int): It is distance measured from object to the Camera while Capturing Reference image
+    This Function Calculate the Focal Length(distance between lens to CMOS sensor), it is simple constant we can find by using
+    MEASURED_DISTACE, REAL_WIDTH(Actual width of object) and WIDTH_OF_OBJECT_IN_IMAGE
+    :param1 Measure_Distance(int): It is distance measured from object to the Camera while Capturing Reference image
 
-:param2 Real_Width(int): It is Actual width of object, in real world (like My face width is = 14.3 centimeters)
-:param3 Width_In_Image(int): It is object width in the frame /image in our case in the reference image(found by Face detector) 
-:retrun Focal_Length(Float):
-'''
+    :param2 Real_Width(int): It is Actual width of object, in real world (like My face width is = 14.3 centimeters)
+    :param3 Width_In_Image(int): It is object width in the frame /image in our case in the reference image(found by Face detector)
+    :retrun Focal_Length(Float):
+    '''
     focal_length = (width_in_rf_image * measured_distance) / real_width
     return focal_length
 # distance estimation function
@@ -50,10 +50,11 @@ This Function simply Estimates the distance between object and camera using argu
 
 :param2 Real_Width(int): It is Actual width of object, in real world (like My face width is = 5.7 Inches)
 :param3 object_Width_Frame(int): width of object in the image(frame in our case, using Video feed)
-:return Distance(float) : distance Estimated  
+:return Distance(float) : distance Estimated
 
 '''
     distance = (real_face_width * Focal_Length)/face_width_in_frame
+
     return distance
 
 
@@ -75,7 +76,7 @@ def face_data(image):
 
 
 # reading reference image from directory
-ref_image = cv2.imread("Ref_image.png")
+ref_image = cv2.imread("../Ref_image.png")
 
 ref_image_face_width = face_data(ref_image)
 Focal_length_found = FocalLength(
