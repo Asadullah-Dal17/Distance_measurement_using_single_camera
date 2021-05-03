@@ -12,7 +12,16 @@
 '''
 
 import cv2
+import time
 # variables
+initialTime = 0
+initialDistance = 0
+changeInTime = 0
+changeInDistance = 0
+
+listDistance = []
+listSpeed = []
+
 # distance from camera to object(face) measured
 Known_distance = 76.2  # centimeter
 # width of face in the real world or Object Plane
@@ -22,22 +31,22 @@ GREEN = (0, 255, 0)
 RED = (0, 0, 255)
 WHITE = (255, 255, 255)
 fonts = cv2.FONT_HERSHEY_COMPLEX
-cap = cv2.VideoCapture(1)
+cap = cv2.VideoCapture(0)
 # face detector object
-face_detector = cv2.CascadeClassifier("../haarcascade_frontalface_default.xml")
+face_detector = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 # focal length finder function
 
 
 def FocalLength(measured_distance, real_width, width_in_rf_image):
     '''
-    This Function Calculate the Focal Length(distance between lens to CMOS sensor), it is simple constant we can find by using
-    MEASURED_DISTACE, REAL_WIDTH(Actual width of object) and WIDTH_OF_OBJECT_IN_IMAGE
-    :param1 Measure_Distance(int): It is distance measured from object to the Camera while Capturing Reference image
+This Function Calculate the Focal Length(distance between lens to CMOS sensor), it is simple constant we can find by using 
+MEASURED_DISTACE, REAL_WIDTH(Actual width of object) and WIDTH_OF_OBJECT_IN_IMAGE 
+:param1 Measure_Distance(int): It is distance measured from object to the Camera while Capturing Reference image
 
-    :param2 Real_Width(int): It is Actual width of object, in real world (like My face width is = 14.3 centimeters)
-    :param3 Width_In_Image(int): It is object width in the frame /image in our case in the reference image(found by Face detector)
-    :retrun Focal_Length(Float):
-    '''
+:param2 Real_Width(int): It is Actual width of object, in real world (like My face width is = 14.3 centimeters)
+:param3 Width_In_Image(int): It is object width in the frame /image in our case in the reference image(found by Face detector) 
+:retrun Focal_Length(Float):
+'''
     focal_length = (width_in_rf_image * measured_distance) / real_width
     return focal_length
 # distance estimation function
@@ -50,11 +59,10 @@ This Function simply Estimates the distance between object and camera using argu
 
 :param2 Real_Width(int): It is Actual width of object, in real world (like My face width is = 5.7 Inches)
 :param3 object_Width_Frame(int): width of object in the image(frame in our case, using Video feed)
-:return Distance(float) : distance Estimated
+:return Distance(float) : distance Estimated  
 
 '''
     distance = (real_face_width * Focal_Length)/face_width_in_frame
-
     return distance
 
 
@@ -75,8 +83,33 @@ def face_data(image):
     return face_width
 
 
+def speedFinder(coveredDistance, timeTaken):
+
+    speed = coveredDistance / timeTaken
+
+    return speed
+
+
+def averageFinder(completeList, averageOfItems):
+
+    # finding the length of list.
+    lengthOfList = len(completeList)
+
+    # calculating the number items to find the average of
+    selectedItems = lengthOfList - averageOfItems
+    # 10 -6 =4
+
+    # getting the list most recent items of list to find average of .
+    selectedItemsList = completeList[selectedItems:]
+
+    # finding the average .
+    average = sum(selectedItemsList) / len(selectedItemsList)
+
+    return average
+
+
 # reading reference image from directory
-ref_image = cv2.imread("../Ref_image.png")
+ref_image = cv2.imread("Ref_image.png")
 
 ref_image_face_width = face_data(ref_image)
 Focal_length_found = FocalLength(
@@ -93,9 +126,43 @@ while True:
     if face_width_in_frame != 0:
         Distance = Distance_finder(
             Focal_length_found, Known_width, face_width_in_frame)
+        listDistance.append(Distance)
+        averageDistance = averageFinder(listDistance, 2)
+
+        # converting centimeters into meters
+        distanceInMeters = averageDistance/100
+
+        if initialDistance != 0:
+            # finding the change in distance
+            changeInDistance = initialDistance - distanceInMeters
+
+            # if changeInDistance < 0:
+            #     changeInDistance * -1
+            # finding change in time
+            changeInTime = time.time() - initialTime
+
+            # finding the sped
+            speed = speedFinder(
+                coveredDistance=changeInDistance, timeTaken=changeInTime)
+            listSpeed.append(speed)
+            averageSpeed = averageFinder(listSpeed, 5)
+            if averageSpeed < 0:
+                averageSpeed = averageSpeed * -1
+            cv2.line(frame, (45, 70), (255, 70), (0, 0, 0), 28)
+            cv2.putText(
+                frame, f"Speed: {round(averageSpeed, 2)} m/s", (50, 75), fonts, 0.6, GREEN, 2)
+
+            # print(speed)
+
+        # inital distance and time
+        initialDistance = distanceInMeters
+        initialTime = time.time()
+
     # Drwaing Text on the screen
+        cv2.line(frame, (45, 25), (255, 25), (0, 0, 255), 28)
+        cv2.line(frame, (45, 25), (255, 25), (0, 0, 0), 24)
         cv2.putText(
-            frame, f"Distance = {round(Distance,2)} CM", (50, 50), fonts, 1, (WHITE), 2)
+            frame, f"Distance = {round(distanceInMeters,2)} m", (50, 30), fonts, 0.5, WHITE, 2)
     cv2.imshow("frame", frame)
     if cv2.waitKey(1) == ord("q"):
         break
