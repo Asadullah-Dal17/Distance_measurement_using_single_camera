@@ -32,6 +32,13 @@ RED = (0, 0, 255)
 WHITE = (255, 255, 255)
 fonts = cv2.FONT_HERSHEY_COMPLEX
 cap = cv2.VideoCapture(0)
+
+# cap.set(3, 640)
+# cap.set(4, 480)
+
+# Define the codec and create VideoWriter object
+fourcc = cv2.VideoWriter_fourcc(*'XVID')
+Recorder = cv2.VideoWriter('distanceAndSpeed.mp4', fourcc, 15.0, (640, 480))
 # face detector object
 face_detector = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 # focal length finder function
@@ -39,12 +46,12 @@ face_detector = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 
 def FocalLength(measured_distance, real_width, width_in_rf_image):
     '''
-This Function Calculate the Focal Length(distance between lens to CMOS sensor), it is simple constant we can find by using 
-MEASURED_DISTACE, REAL_WIDTH(Actual width of object) and WIDTH_OF_OBJECT_IN_IMAGE 
+This Function Calculate the Focal Length(distance between lens to CMOS sensor), it is simple constant we can find by using
+MEASURED_DISTACE, REAL_WIDTH(Actual width of object) and WIDTH_OF_OBJECT_IN_IMAGE
 :param1 Measure_Distance(int): It is distance measured from object to the Camera while Capturing Reference image
 
 :param2 Real_Width(int): It is Actual width of object, in real world (like My face width is = 14.3 centimeters)
-:param3 Width_In_Image(int): It is object width in the frame /image in our case in the reference image(found by Face detector) 
+:param3 Width_In_Image(int): It is object width in the frame /image in our case in the reference image(found by Face detector)
 :retrun Focal_Length(Float):
 '''
     focal_length = (width_in_rf_image * measured_distance) / real_width
@@ -59,7 +66,7 @@ This Function simply Estimates the distance between object and camera using argu
 
 :param2 Real_Width(int): It is Actual width of object, in real world (like My face width is = 5.7 Inches)
 :param3 object_Width_Frame(int): width of object in the image(frame in our case, using Video feed)
-:return Distance(float) : distance Estimated  
+:return Distance(float) : distance Estimated
 
 '''
     distance = (real_face_width * Focal_Length)/face_width_in_frame
@@ -68,7 +75,7 @@ This Function simply Estimates the distance between object and camera using argu
 
 def face_data(image):
     '''
-    This function Detect the face 
+    This function Detect the face
     :param Takes image as argument.
     :returns face_width in the pixels
     '''
@@ -145,12 +152,20 @@ while True:
             speed = speedFinder(
                 coveredDistance=changeInDistance, timeTaken=changeInTime)
             listSpeed.append(speed)
-            averageSpeed = averageFinder(listSpeed, 5)
+            averageSpeed = averageFinder(listSpeed, 10)
             if averageSpeed < 0:
                 averageSpeed = averageSpeed * -1
-            cv2.line(frame, (45, 70), (255, 70), (0, 0, 0), 28)
+            # filling the progressive line dependent on the speed.
+            speedFill = int(45+(averageSpeed) * 130)
+            if speedFill > 235:
+                speedFill = 235
+            cv2.line(frame, (45, 70), (235, 70), (0, 255, 0), 35)
+            # speed dependent line
+            cv2.line(frame, (45, 70), (speedFill, 70), (255, 255, 0), 32)
+            cv2.line(frame, (45, 70), (235, 70), (0, 0, 0), 22)
+            # print()
             cv2.putText(
-                frame, f"Speed: {round(averageSpeed, 2)} m/s", (50, 75), fonts, 0.6, GREEN, 2)
+                frame, f"Speed: {round(averageSpeed, 2)} m/s", (50, 75), fonts, 0.6, (0, 255, 220), 2)
 
             # print(speed)
 
@@ -159,12 +174,15 @@ while True:
         initialTime = time.time()
 
     # Drwaing Text on the screen
-        cv2.line(frame, (45, 25), (255, 25), (0, 0, 255), 28)
-        cv2.line(frame, (45, 25), (255, 25), (0, 0, 0), 24)
+        cv2.line(frame, (45, 25), (255, 25), (255, 0, 255), 30)
+        cv2.line(frame, (45, 25), (255, 25), (0, 0, 0), 22)
         cv2.putText(
-            frame, f"Distance = {round(distanceInMeters,2)} m", (50, 30), fonts, 0.5, WHITE, 2)
+            frame, f"Distance = {round(distanceInMeters,2)} m", (50, 30), fonts, 0.6, WHITE, 2)
+    # recording the video
+    Recorder.write(frame)
     cv2.imshow("frame", frame)
     if cv2.waitKey(1) == ord("q"):
         break
 cap.release()
+Recorder.release()
 cv2.destroyAllWindows()
