@@ -1,6 +1,6 @@
 # Finding Speed using Distance Estimation.
 
-![Speed and Distance Estimation](https://imgur.com/a/oxilQG7)
+<img src="../speed_distance_estiamtion.gif">
 
 ## TODO
 
