@@ -38,7 +38,7 @@ cap = cv2.VideoCapture(0)
 
 # Define the codec and create VideoWriter object
 fourcc = cv2.VideoWriter_fourcc(*'XVID')
-Recorder = cv2.VideoWriter('distanceAndSpeed.mp4', fourcc, 15.0, (640, 480))
+Recorder = cv2.VideoWriter('distanceAndSpeed2.mp4', fourcc, 15.0, (640, 480))
 # face detector object
 face_detector = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 # focal length finder function
@@ -122,7 +122,7 @@ ref_image_face_width = face_data(ref_image)
 Focal_length_found = FocalLength(
     Known_distance, Known_width, ref_image_face_width)
 print(Focal_length_found)
-cv2.imshow("ref_image", ref_image)
+# cv2.imshow("ref_image", ref_image)
 
 while True:
     _, frame = cap.read()
