@@ -1,12 +1,14 @@
 # Finding Speed using Distance Estimation.
 
-<img src="../speed_distance_estiamtion.gif">
+## Output of speed.py
+
+<img src="../speed_distance_estiamtion.gif" width ="1000">
 
 ## TODO
 
 - [x] Find Speed
 - [x] Give it more frame to show, so it looks legible or convert the units
-- [ ] finally short Video speed finding (Youtube)
+- [ ] Youtube Tutorial: [here](https://youtu.be/DIxcLghsQ4Q) (Youtube)
 
 ## if you want make contribution please go a head.
 
