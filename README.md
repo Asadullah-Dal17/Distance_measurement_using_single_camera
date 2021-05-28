@@ -1,5 +1,7 @@
 # Distance measurement using single:one:camera :camera:
 
+[![GitHub](https://img.shields.io/github/forks/user/repository.svg?style=flat-square)](https://github.com/Asadullah-Dal17/Distance_measurement_using_single_camera) [![GitHub](https://img.shields.io/github/stars/user/repository.svg?style=flat-square)](https://github.com/Asadullah-Dal17/Distance_measurement_using_single_camera)
+
 You can use this code to measuere the distance from object to camera using **_single camera_** :camera: .
 
 I have detect a face in the frame and estimated a distance using the width of face.
