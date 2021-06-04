@@ -1,6 +1,6 @@
 # Distance Estimation using Yolo V4 as object detector
 
-- Here we are targeting the person class only, because it easier for demo.
+- Here we are targeting the person and cell phone classes only, for demo purpose.
 
 - you can follow all the steps mentioned in the video to create for other objects as well.
 
@@ -8,11 +8,19 @@ implementation detail available on [_**Darknet**_](https://github.com/pjreddie/d
 
 ---
 
+## TO DO
+
+- [x] Run Yolo V4 with opencv, making thing easy and simple as possible
+
+- [x] Finding distance of mutiple object at same time.
+
+- [ ] testing, accuracy and error rate
+
 ## Installation you need opencv-contrib-python
 
 [opencv contrib](https://pypi.org/project/opencv-contrib-python/)
 
---> **windows**  
+--> **windows**
 
 `pip install opencv-contrib-python`
 
