@@ -12,7 +12,7 @@ implementation detail available on [_**Darknet**_](https://github.com/pjreddie/d
 
 [opencv contrib](https://pypi.org/project/opencv-contrib-python/)
 
---> **windows**
+--> **windows**  
 
 `pip install opencv-contrib-python`
 
