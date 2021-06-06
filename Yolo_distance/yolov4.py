@@ -1,5 +1,3 @@
-
-from typing import ItemsView, List
 import cv2 as cv
 import time
 # Required Distance data
@@ -10,6 +8,9 @@ KnownDistance = 45  # Inches
 # setting parameters
 CONFIDENCE_THRESHOLD = 0.4
 NMS_THRESHOLD = 0.3
+fonts1 = cv.FONT_HERSHEY_COMPLEX_SMALL
+fonts2 = cv.FONT_HERSHEY_PLAIN
+fonts3 = cv.FONT_HERSHEY_SIMPLEX
 
 # colors for object detected
 COLORS = [(0, 255, 255), (255, 255, 0), (0, 255, 0), (255, 0, 0)]
@@ -47,6 +48,7 @@ def FocalLength(measured_distance, real_width, width_in_rf_image):
     return focal_length
 # distance estimation function
 
+
 def Distance_finder(Focal_Length, real_object_width, object_width_in_frame):
 
     distance = (real_object_width * Focal_Length)/object_width_in_frame
@@ -68,21 +70,23 @@ def ObjectDetector(image):
 
         if classid == 0:
             objWidth = box[2]
-            DataList.append([class_names[classid[0]], box[2], (box[0], box[1]-14)])
+            DataList.append(
+                [class_names[classid[0]], box[2], (box[0], box[1]-14)])
 
             # print(label)
             # distance in centimeters
             # Distance = Distance_finder(FL[0], PersonWidth, box[2])
             # label = f'Distance = {round(Distance,2)} Inches'
         elif classid == 67:
-            DataList.append([class_names[classid[0]], box[2], (box[0], box[1] - 14)])
+            DataList.append(
+                [class_names[classid[0]], box[2], (box[0], box[1] - 14)])
             objWidth = box[2]
 
             # print(label)
             position = (box[0], box[1]-14)
         # print(DataDict)
         cv.rectangle(image, box, color, 2)
-        cv.putText(image, label, (box[0], box[1]-10), fonts, 0.5, color, 2)
+        cv.putText(image, label, (box[0], box[1]-10), fonts, 0.42, color, 1)
     return DataList, box
 
 
@@ -98,36 +102,51 @@ pFocalLength = FocalLength(KnownDistance, PersonWidth, personPxWidth[0][1])
 mFocalLength = FocalLength(KnownDistance, MobileWith, mobilePxWidth[1][1])
 
 camera = cv.VideoCapture(0)
-print(f'Mobile Focal Length : {mFocalLength} Person Focal Length:  {pFocalLength}')
-
+fourcc = cv.VideoWriter_fourcc(*'XVID')
+camera.set(cv.CAP_PROP_FPS, 7)
+out = cv.VideoWriter('Output.mp4', fourcc, 7.0, (640, 480))
+print(
+    f'Mobile Focal Length : {mFocalLength} Person Focal Length:  {pFocalLength}')
+frameCounter = 0
+starting_time = time.time()
 while True:
     # break
+    frameCounter += 1
 
     ret, frame = camera.read()
     orignal = frame.copy()
     objectData, position = ObjectDetector(
         frame)
-    objRealWidth =None
-    distance =None
-    position = (0,0)
-    x, y =0,0
+    objRealWidth = None
+    distance = None
+    position = (0, 0)
+    x, y = 0, 0
     for d in objectData:
         # print(d)
-        if d[0] =='person':
-            x,y = d[2]
+        if d[0] == 'person':
+            x, y = d[2]
             distance = Distance_finder(pFocalLength, PersonWidth, d[1])
-        elif d[0] =='cell phone':
+        elif d[0] == 'cell phone':
             distance = Distance_finder(mFocalLength, MobileWith, d[1])
             x, y = d[2]
         # print(position)
-        cv.line(frame, (x, y-4),(x+200, y-4), (0,0,0), 24)
-        cv.putText(frame, f'Distance: {round(distance,2)} Inches', (x, y), fonts,0.57, (255,100,100), 1)
+        cv.line(frame, (x, y-22), (x+130, y-22), (0, 0, 0), 24)
+        cv.putText(frame, f'Distance: {round(distance,0)} In',
+                   (x, y-20), fonts, 0.42, (0, 255, 0), 1)
 
-
+    end_time = time.time() - starting_time
+    # print(end_time)
+    fps = frameCounter/end_time
+    # print(fps)
+    cv.line(frame, (37, 34), (130, 34), (0, 0, 0), 26)
+    cv.putText(frame, f'FPS: {round(fps,1)}',
+               (40, 40), fonts, 0.7, (255, 0, 255), 1)
     # cv.imshow('oringal', orignal)
+    out.write(frame)
     cv.imshow('frame', frame)
-
     key = cv.waitKey(1)
     if key == ord('q'):
         break
 cv.destroyAllWindows()
+out.release()
+camera.release()
