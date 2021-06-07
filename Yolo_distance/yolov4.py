@@ -130,9 +130,9 @@ while True:
             distance = Distance_finder(mFocalLength, MobileWith, d[1])
             x, y = d[2]
         # print(position)
-        cv.line(frame, (x, y-22), (x+130, y-22), (0, 0, 0), 24)
-        cv.putText(frame, f'Distance: {round(distance,0)} In',
-                   (x, y-20), fonts, 0.42, (0, 255, 0), 1)
+        cv.line(frame, (x, y-22+50), (x+130, y-22+50), (0, 0, 0), 24)
+        cv.putText(frame, f'Distance: {round(distance,1)} In',
+                   (x, y-20+50), fonts, 0.42, (0, 255, 0), 1)  # /39.3701
 
     end_time = time.time() - starting_time
     # print(end_time)
