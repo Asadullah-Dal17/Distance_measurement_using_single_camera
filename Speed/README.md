@@ -1,6 +1,10 @@
 # Finding Speed using Distance Estimation.
 
-## Output of speed.py
+![GitHub Repo stars](https://img.shields.io/github/stars/Asadullah-Dal17/Distance_measurement_using_single_camera?style=social) ![GitHub forks](https://img.shields.io/github/forks/Asadullah-Dal17/Distance_measurement_using_single_camera?style=social) ![YouTube Channel Subscribers](https://img.shields.io/youtube/channel/subscribers/UCc8Lx22a5OX4XMxrCykzjbA?style=social)
+
+## Output of speed and Distance Estimation.
+
+[Youtube Tutorial](https://youtu.be/DIxcLghsQ4Q) ![YouTube Video Views](https://img.shields.io/youtube/views/DIxcLghsQ4Q?style=social)
 
 <img src="../speed_distance_estiamtion.gif" width ="1000">
 
@@ -8,7 +12,7 @@
 
 - [x] Find Speed
 - [x] Give it more frame to show, so it looks legible or convert the units
-- [ ] Youtube Tutorial: [here](https://youtu.be/DIxcLghsQ4Q) (Youtube)
+- [x] Youtube Tutorial: [here](https://youtu.be/DIxcLghsQ4Q) (Youtube)
 
 ## if you want make contribution please go a head.
 
