@@ -6,6 +6,15 @@ You can use this code to measures the distance from object to camera using **_si
 
 I have detect a face in the frame and estimated a distance using the width of face.
 
+## Distance & Speed Estimation Demo
+
+https://user-images.githubusercontent.com/66181793/122644855-bb8ac000-d130-11eb-85c3-c7ff4bd6474c.mp4
+
+### Video Tutorials
+[**Distance Estimation Youtube Tutorail**](https://youtu.be/zzJfAw3ASzY) ![YouTube Video Views](https://img.shields.io/youtube/views/zzJfAw3ASzY?style=social)
+
+[Distance & Speed Estimation Youtube Tutorial](https://youtu.be/DIxcLghsQ4Q) ![YouTube Video Views](https://img.shields.io/youtube/views/DIxcLghsQ4Q?style=social)
+
 :heavy_check_mark: I have included [**Speed Estimation**](https://github.com/Asadullah-Dal17/Distance_measurement_using_single_camera/tree/main/Speed) code is well check that out.
 
 :heavy_check_mark: I have include [**Distance estimation of multiple objects using Yolo V4**](https://github.com/Asadullah-Dal17/Distance_measurement_using_single_camera/tree/main/Yolo_distance) Object Detector Opencv-python
@@ -78,16 +87,7 @@ This Funciton Taks Three Argument,
 
 `face_width_in_frame` width of face in the frame, unit will pixels here.
 
-### Updated_Distance.py Looks something likes This.
 
-[Youtube Tutorial](https://youtu.be/zzJfAw3ASzY) ![YouTube Video Views](https://img.shields.io/youtube/views/zzJfAw3ASzY?style=social)
-
-<img alt="Gif Update Distnace code " src="Ouput_Updated_distance.gif">
-
-### Speed and Distance Estimation
-
-[Youtube Tutorial](https://youtu.be/DIxcLghsQ4Q) ![YouTube Video Views](https://img.shields.io/youtube/views/DIxcLghsQ4Q?style=social)
-<img alt="speed and Distance Estimation" src="speed_distance_estiamtion.gif">
 
 I have also create <a href ="https://github.com/Asadullah-Dal17/Face-Following-Robot-using-Distance-Estimation"> <strong>Face Following Robot </strong> </a> which use distance Estimation, if you are interested you can Watch my<a href ="https://youtu.be/5FSOZe96kNg"> <strong>Youtube Video</strong> </a>
 
