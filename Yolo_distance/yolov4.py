@@ -81,6 +81,14 @@ def ObjectDetector(image):
             DataList.append(
                 [class_names[classid[0]], box[2], (box[0], box[1] - 14)])
             objWidth = box[2]
+        # adding more then two classes for distance estimation
+            '''     
+        elif classid == classId:
+            DataList.append(
+                [class_names[classid[0]], box[2], (box[0], box[1] - 14)])
+            objWidth = box[2]
+        
+        '''
 
             # print(label)
             position = (box[0], box[1]-14)
@@ -96,15 +104,23 @@ ref_Mobile = cv.imread('ReferenceImages/image4.png')
 
 mobilePxWidth, _ = ObjectDetector(ref_Mobile)
 personPxWidth, _ = ObjectDetector(Ref_person)
-print(mobilePxWidth[1][1])
+print(mobilePxWidth[1][1].shape)
+print(len(mobilePxWidth))
 
 pFocalLength = FocalLength(KnownDistance, PersonWidth, personPxWidth[0][1])
 mFocalLength = FocalLength(KnownDistance, MobileWith, mobilePxWidth[1][1])
+# more classes
+'''
+mFocalLength = FocalLength(KnownDistance, MobileWith, mobilePxWidth[2][1])
+'''
 
-camera = cv.VideoCapture(0)
+
+
+
+camera = cv.VideoCapture(1)
 fourcc = cv.VideoWriter_fourcc(*'XVID')
 camera.set(cv.CAP_PROP_FPS, 7)
-out = cv.VideoWriter('Output.mp4', fourcc, 7.0, (640, 480))
+# out = cv.VideoWriter('Output.mp4', fourcc, 7.0, (640, 480))
 print(
     f'Mobile Focal Length : {mFocalLength} Person Focal Length:  {pFocalLength}')
 frameCounter = 0
@@ -114,7 +130,7 @@ while True:
     frameCounter += 1
 
     ret, frame = camera.read()
-    orignal = frame.copy()
+    # orignal = frame.copy()
     objectData, position = ObjectDetector(
         frame)
     objRealWidth = None
@@ -142,11 +158,11 @@ while True:
     cv.putText(frame, f'FPS: {round(fps,1)}',
                (40, 40), fonts, 0.7, (255, 0, 255), 1)
     # cv.imshow('oringal', orignal)
-    out.write(frame)
+    # out.write(frame)
     cv.imshow('frame', frame)
     key = cv.waitKey(1)
     if key == ord('q'):
         break
 cv.destroyAllWindows()
-out.release()
+# out.release()
 camera.release()
