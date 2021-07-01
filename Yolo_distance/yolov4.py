@@ -81,7 +81,6 @@ def ObjectDetector(image):
             DataList.append(
                 [class_names[classid[0]], box[2], (box[0], box[1] - 14)])
             objWidth = box[2]
-<<<<<<< HEAD
         # adding more then two classes for distance estimation
             '''     
         elif classid == classId:
@@ -90,8 +89,6 @@ def ObjectDetector(image):
             objWidth = box[2]
         
         '''
-=======
->>>>>>> 6a0ad43bbf2fcdcf01438b19c00e94b61a04faf5
 
             # print(label)
             position = (box[0], box[1]-14)
@@ -107,7 +104,6 @@ ref_Mobile = cv.imread('ReferenceImages/image4.png')
 
 mobilePxWidth, _ = ObjectDetector(ref_Mobile)
 personPxWidth, _ = ObjectDetector(Ref_person)
-<<<<<<< HEAD
 print(mobilePxWidth[1][1].shape)
 print(len(mobilePxWidth))
 
@@ -125,17 +121,6 @@ camera = cv.VideoCapture(1)
 fourcc = cv.VideoWriter_fourcc(*'XVID')
 camera.set(cv.CAP_PROP_FPS, 7)
 # out = cv.VideoWriter('Output.mp4', fourcc, 7.0, (640, 480))
-=======
-print(mobilePxWidth[1][1])
-
-pFocalLength = FocalLength(KnownDistance, PersonWidth, personPxWidth[0][1])
-mFocalLength = FocalLength(KnownDistance, MobileWith, mobilePxWidth[1][1])
-
-camera = cv.VideoCapture(0)
-fourcc = cv.VideoWriter_fourcc(*'XVID')
-camera.set(cv.CAP_PROP_FPS, 7)
-out = cv.VideoWriter('Output.mp4', fourcc, 7.0, (640, 480))
->>>>>>> 6a0ad43bbf2fcdcf01438b19c00e94b61a04faf5
 print(
     f'Mobile Focal Length : {mFocalLength} Person Focal Length:  {pFocalLength}')
 frameCounter = 0
@@ -145,11 +130,7 @@ while True:
     frameCounter += 1
 
     ret, frame = camera.read()
-<<<<<<< HEAD
     # orignal = frame.copy()
-=======
-    orignal = frame.copy()
->>>>>>> 6a0ad43bbf2fcdcf01438b19c00e94b61a04faf5
     objectData, position = ObjectDetector(
         frame)
     objRealWidth = None
@@ -177,19 +158,16 @@ while True:
     cv.putText(frame, f'FPS: {round(fps,1)}',
                (40, 40), fonts, 0.7, (255, 0, 255), 1)
     # cv.imshow('oringal', orignal)
-<<<<<<< HEAD
+
+
+
     # out.write(frame)
-=======
-    out.write(frame)
->>>>>>> 6a0ad43bbf2fcdcf01438b19c00e94b61a04faf5
+
     cv.imshow('frame', frame)
     key = cv.waitKey(1)
     if key == ord('q'):
         break
 cv.destroyAllWindows()
-<<<<<<< HEAD
+
 # out.release()
-=======
-out.release()
->>>>>>> 6a0ad43bbf2fcdcf01438b19c00e94b61a04faf5
 camera.release()
