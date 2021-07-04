@@ -1,4 +1,3 @@
-
 '''
 -------------------------------------------
 -    Author: Asadullah Dal                -
@@ -14,9 +13,9 @@
 import cv2
 # variables
 # distance from camera to object(face) measured
-Known_distance = 76.2  # centimeter
+KNOWN_DISTANCE = 76.2  # centimeter
 # width of face in the real world or Object Plane
-Known_width = 14.3  # centimeter
+KNOWN_WIDTH = 14.3  # centimeter
 # Colors
 GREEN = (0, 255, 0)
 RED = (0, 0, 255)
@@ -28,7 +27,7 @@ face_detector = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 # focal length finder function
 
 
-def FocalLength(measured_distance, real_width, width_in_rf_image):
+def focal_length(measured_distance, real_width, width_in_rf_image):
     '''
 This Function Calculate the Focal Length(distance between lens to CMOS sensor), it is simple constant we can find by using 
 MEASURED_DISTACE, REAL_WIDTH(Actual width of object) and WIDTH_OF_OBJECT_IN_IMAGE 
@@ -36,24 +35,24 @@ MEASURED_DISTACE, REAL_WIDTH(Actual width of object) and WIDTH_OF_OBJECT_IN_IMAG
 
 :param2 Real_Width(int): It is Actual width of object, in real world (like My face width is = 14.3 centimeters)
 :param3 Width_In_Image(int): It is object width in the frame /image in our case in the reference image(found by Face detector) 
-:retrun Focal_Length(Float):
+:retrun focal_length(Float):
 '''
-    focal_length = (width_in_rf_image * measured_distance) / real_width
-    return focal_length
+    focal_length_value = (width_in_rf_image * measured_distance) / real_width
+    return focal_length_value
 # distance estimation function
 
 
-def Distance_finder(Focal_Length, real_face_width, face_width_in_frame):
+def distance_finder(focal_length, real_face_width, face_width_in_frame):
     '''
-This Function simply Estimates the distance between object and camera using arguments(Focal_Length, Actual_object_width, Object_width_in_the_image)
-:param1 Focal_length(float): return by the Focal_Length_Finder function
+This Function simply Estimates the distance between object and camera using arguments(focal_length, Actual_object_width, Object_width_in_the_image)
+:param1 focal_length(float): return by the focal_length_Finder function
 
 :param2 Real_Width(int): It is Actual width of object, in real world (like My face width is = 5.7 Inches)
 :param3 object_Width_Frame(int): width of object in the image(frame in our case, using Video feed)
 :return Distance(float) : distance Estimated  
 
 '''
-    distance = (real_face_width * Focal_Length)/face_width_in_frame
+    distance = (real_face_width * focal_length)/face_width_in_frame
     return distance
 
 
@@ -78,9 +77,9 @@ def face_data(image):
 ref_image = cv2.imread("Ref_image.png")
 
 ref_image_face_width = face_data(ref_image)
-Focal_length_found = FocalLength(
-    Known_distance, Known_width, ref_image_face_width)
-print(Focal_length_found)
+focal_length_found = focal_length(
+    KNOWN_DISTANCE, KNOWN_WIDTH, ref_image_face_width)
+print(focal_length_found)
 cv2.imshow("ref_image", ref_image)
 
 while True:
@@ -90,8 +89,8 @@ while True:
     face_width_in_frame = face_data(frame)
     # finding the distance by calling function Distance
     if face_width_in_frame != 0:
-        Distance = Distance_finder(
-            Focal_length_found, Known_width, face_width_in_frame)
+        Distance = distance_finder(
+            focal_length_found, KNOWN_WIDTH, face_width_in_frame)
     # Drwaing Text on the screen
         cv2.putText(
             frame, f"Distance = {round(Distance,2)} CM", (50, 50), fonts, 1, (WHITE), 2)
