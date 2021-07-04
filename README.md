@@ -55,9 +55,11 @@ git clone https://github.com/Asadullah-Dal17/Distance_measurement_using_single_c
 
 ```python
 # focal length finder function
-def FocalLength(measured_distance, real_width, width_in_rf_image):
-    focal_length = (width_in_rf_image* measured_distance)/ real_width
-    return focal_length
+def focal_length(measured_distance, real_width, width_in_rf_image):
+
+    focal_length_value = (width_in_rf_image * measured_distance) / real_width
+    #return focal length.
+    return focal_length_value
 
 ```
 
@@ -73,8 +75,10 @@ The Focal Length finder Function Tacks Three Arguments:
 
 ```python
 # distance estimation function
-def Distance_finder (Focal_Length, real_face_width, face_width_in_frame):
-    distance = (real_face_width * Focal_Length)/face_width_in_frame
+
+def distance_finder(focal_length, real_face_width, face_width_in_frame):
+
+    distance = (real_face_width * focal_length)/face_width_in_frame
     return distance
 
 ```
