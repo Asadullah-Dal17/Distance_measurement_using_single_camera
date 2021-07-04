@@ -22,11 +22,12 @@ RED = (0, 0, 255)
 WHITE = (255, 255, 255)
 fonts = cv2.FONT_HERSHEY_COMPLEX
 cap = cv2.VideoCapture(1)
+
 # face detector object
 face_detector = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
+
+
 # focal length finder function
-
-
 def focal_length(measured_distance, real_width, width_in_rf_image):
     '''
 This Function Calculate the Focal Length(distance between lens to CMOS sensor), it is simple constant we can find by using 
@@ -39,9 +40,8 @@ MEASURED_DISTACE, REAL_WIDTH(Actual width of object) and WIDTH_OF_OBJECT_IN_IMAG
 '''
     focal_length_value = (width_in_rf_image * measured_distance) / real_width
     return focal_length_value
+
 # distance estimation function
-
-
 def distance_finder(focal_length, real_face_width, face_width_in_frame):
     '''
 This Function simply Estimates the distance between object and camera using arguments(focal_length, Actual_object_width, Object_width_in_the_image)
@@ -55,7 +55,7 @@ This Function simply Estimates the distance between object and camera using argu
     distance = (real_face_width * focal_length)/face_width_in_frame
     return distance
 
-
+# face detector function 
 def face_data(image):
     '''
     This function Detect the face 
