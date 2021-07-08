@@ -25,7 +25,7 @@ https://user-images.githubusercontent.com/66181793/124917186-f5066b00-e00c-11eb-
 
 :heavy_check_mark: I have included [**Speed Estimation**](https://github.com/Asadullah-Dal17/Distance_measurement_using_single_camera/tree/main/Speed) code is well check that out.
 
-:heavy_check_mark: I have include [**Distance estimation of multiple objects using Yolo V4**](https://github.com/Asadullah-Dal17/Yolov4-Detector-and-Distance-Estimator) Object Detector Opencv-python
+:heavy_check_mark: You can find the implementation of  [**Distance estimation of multiple objects using Yolo V4**](https://github.com/Asadullah-Dal17/Yolov4-Detector-and-Distance-Estimator) Object Detector Opencv-python
 
 ## Clone this Repo:
 
