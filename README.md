@@ -2,9 +2,9 @@
 
 ![GitHub Repo stars](https://img.shields.io/github/stars/Asadullah-Dal17/Distance_measurement_using_single_camera?style=social) ![GitHub forks](https://img.shields.io/github/forks/Asadullah-Dal17/Distance_measurement_using_single_camera?style=social) ![YouTube Channel Subscribers](https://img.shields.io/youtube/channel/subscribers/UCc8Lx22a5OX4XMxrCykzjbA?style=social)
 
-if you want find distance, with your simple webcam, then this algorithm(*Triangle similarity*)  will be helpful for you  to find Distance *from object to camera*, I have provide to two examples, one is simple **face detection and distance Estimation**, other is **yolo4 object detection and distance Estimation**
+If you want estimate distance of objects with your simple webcam, then this algorithm(*Triangle similarity*) will be helpful for you to find Distance *from object to camera*, I have provide to two examples, one is simple **face detection and distance Estimation**, other is **Yolo4 object detection and distance Estimation**
 
-In This readme file you will git short description, if need more details, then you can watch video tutorial on YouTube as well, 
+Here in this readme file you will get short description, if need more details, then you can watch video tutorial on YouTube as well.
 
 ## Distance & Speed Estimation Demo
 
@@ -17,6 +17,7 @@ https://user-images.githubusercontent.com/66181793/122644855-bb8ac000-d130-11eb-
 [**Distance & Speed Estimation Youtube Tutorial**](https://youtu.be/DIxcLghsQ4Q) ![YouTube Video Views](https://img.shields.io/youtube/views/DIxcLghsQ4Q?style=social)
 
 [**YoloV4 Object Detection & Distance Estimation**](https://youtu.be/FcRCwTgYXJw) ![YouTube Video Views](https://img.shields.io/youtube/views/FcRCwTgYXJw?style=social)
+[*Project GitHub Repository*](https://github.com/Asadullah-Dal17/Yolov4-Detector-and-Distance-Estimator)
 
 ## YoloV4 Distance Estimation
 
