@@ -90,7 +90,7 @@ def face_data(image, CallOut, Distance_level):
     face_center_y = 0
     gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     faces = face_detector.detectMultiScale(gray_image, 1.3, 5)
-    for (x, y, h, w) in faces:
+    for (x, y, w, h) in faces:
         line_thickness = 2
         # print(len(faces))
         LLV = int(h*0.12)
