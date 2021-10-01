@@ -2,7 +2,7 @@
 
 ![GitHub Repo stars](https://img.shields.io/github/stars/Asadullah-Dal17/Distance_measurement_using_single_camera?style=social) ![GitHub forks](https://img.shields.io/github/forks/Asadullah-Dal17/Distance_measurement_using_single_camera?style=social) ![YouTube Channel Subscribers](https://img.shields.io/youtube/channel/subscribers/UCc8Lx22a5OX4XMxrCykzjbA?style=social)
 
-If you want estimate distance of objects with your simple webcam, then this algorithm(*Triangle similarity*) will be helpful for you to find Distance *from object to camera*, I have provide to two examples, one is simple **face detection and distance Estimation**, other is **Yolo4 object detection and distance Estimation**
+If you want to estimate distance of objects with your simple webcam, then this algorithm(*Triangle similarity*) would be helpful for you to find Distance *from object to camera*, I have provide to two examples, one is simple **face detection and distance Estimation**, other is **Yolo4 object detection and distance Estimation**
 
 Here in this readme file you will get short description, if need more details, then you can watch video tutorial on YouTube as well.
 
