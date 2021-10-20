@@ -24,7 +24,7 @@ fonts = cv2.FONT_HERSHEY_COMPLEX
 cap = cv2.VideoCapture(0)
 
 # face detector object
-face_detector = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
+face_detector = cv2.CascadeClassifier("../haarcascade_frontalface_default.xml")
 
 
 # focal length finder function
@@ -74,7 +74,7 @@ def face_data(image):
 
 
 # reading reference image from directory
-ref_image = cv2.imread("Ref_image.png")
+ref_image = cv2.imread("../Ref_image.png")
 
 ref_image_face_width = face_data(ref_image)
 focal_length_found = focal_length(
