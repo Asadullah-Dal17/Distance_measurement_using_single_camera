@@ -99,10 +99,10 @@ while True:
     # Drwaing Text on the screen
         # cv.putText(
         #     frame, f"Distance = {round(Distance,2)} CM", (50, 50), fonts, 1, (WHITE), 2)
-        AiPhile.textBGoutline(frame, f"Distance = {round(Distance,2)}", (30,60), scaling=0.8, text_color=AiPhile.YELLOW)
+        AiPhile.textBGoutline(frame, f"Distance = {round(Distance,2)}", (30,80), scaling=0.6, text_color=AiPhile.YELLOW)
 
     fps = frame_counter/(time.time() - starting_time)
-    AiPhile.textBGoutline(frame, f'FPS: {round(fps,2)}', (30,40), scaling=0.7)
+    AiPhile.textBGoutline(frame, f'FPS: {round(fps,2)}', (30,40), scaling=0.5)
     cv.imshow("frame", frame)
     if cv.waitKey(1) == ord("q"):
         break
