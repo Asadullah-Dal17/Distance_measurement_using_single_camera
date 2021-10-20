@@ -10,7 +10,8 @@
 -------------------------------------------
 '''
 
-import cv2
+import cv2 as cv 
+import time 
 # variables
 # distance from camera to object(face) measured
 KNOWN_DISTANCE = 76.2  # centimeter
@@ -20,11 +21,11 @@ KNOWN_WIDTH = 14.3  # centimeter
 GREEN = (0, 255, 0)
 RED = (0, 0, 255)
 WHITE = (255, 255, 255)
-fonts = cv2.FONT_HERSHEY_COMPLEX
-cap = cv2.VideoCapture(0)
+fonts = cv.FONT_HERSHEY_COMPLEX
+cap = cv.VideoCapture(0)
 
 # face detector object
-face_detector = cv2.CascadeClassifier("../haarcascade_frontalface_default.xml")
+face_detector = cv.CascadeClassifier("../haarcascade_frontalface_default.xml")
 
 
 # focal length finder function
@@ -64,25 +65,28 @@ def face_data(image):
     '''
 
     face_width = 0
-    gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    gray_image = cv.cvtColor(image, cv.COLOR_BGR2GRAY)
     faces = face_detector.detectMultiScale(gray_image, 1.3, 5)
     for (x, y, h, w) in faces:
-        cv2.rectangle(image, (x, y), (x+w, y+h), WHITE, 1)
+        cv.rectangle(image, (x, y), (x+w, y+h), WHITE, 1)
         face_width = w
 
     return face_width
 
 
 # reading reference image from directory
-ref_image = cv2.imread("../Ref_image.png")
+ref_image = cv.imread("../Ref_image.png")
 
 ref_image_face_width = face_data(ref_image)
 focal_length_found = focal_length(
     KNOWN_DISTANCE, KNOWN_WIDTH, ref_image_face_width)
 print(focal_length_found)
-cv2.imshow("ref_image", ref_image)
-
+cv.imshow("ref_image", ref_image)
+# starting time here 
+starting_time = time.time()
+frame_counter =0
 while True:
+    frame_counter +=1
     _, frame = cap.read()
 
     # calling face_data function
@@ -92,10 +96,12 @@ while True:
         Distance = distance_finder(
             focal_length_found, KNOWN_WIDTH, face_width_in_frame)
     # Drwaing Text on the screen
-        cv2.putText(
+        cv.putText(
             frame, f"Distance = {round(Distance,2)} CM", (50, 50), fonts, 1, (WHITE), 2)
-    cv2.imshow("frame", frame)
-    if cv2.waitKey(1) == ord("q"):
+    fps = frame_counter/(time.time() - starting_time)
+    cv.putText(frame, f'FPS: {round(fps, 2)}' , (30,40), cv.FONT_HERSHEY_SIMPLEX, 0.6, (0,255,0), 2)
+    cv.imshow("frame", frame)
+    if cv.waitKey(1) == ord("q"):
         break
 cap.release()
-cv2.destroyAllWindows()
+cv.destroyAllWindows()
