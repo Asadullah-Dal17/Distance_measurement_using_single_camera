@@ -13,7 +13,6 @@
 import cv2 as cv 
 import time 
 import AiPhile
-from Raspberry_pi.AiPhile import YELLOW
 # variables
 # distance from camera to object(face) measured
 KNOWN_DISTANCE = 76.2  # centimeter
@@ -100,7 +99,7 @@ while True:
     # Drwaing Text on the screen
         # cv.putText(
         #     frame, f"Distance = {round(Distance,2)} CM", (50, 50), fonts, 1, (WHITE), 2)
-        AiPhile.textBGoutline(frame, f"Distance = {round(Distance,2)}", (30,60), scaling=0.8, text_color=YELLOW)
+        AiPhile.textBGoutline(frame, f"Distance = {round(Distance,2)}", (30,60), scaling=0.8, text_color=AiPhile.YELLOW)
 
     fps = frame_counter/(time.time() - starting_time)
     AiPhile.textBGoutline(frame, f'FPS: {round(fps,2)}', (30,40), scaling=0.7)
