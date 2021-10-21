@@ -15,10 +15,10 @@ sudo apt install libxcb-shm0 libcdio-paranoia-dev libsdl2-2.0-0 libxv1  libtheor
 
 ## ⚠️ Distance Estimation on Pi Camera
 
-> the distance estimation pi_camera is not tested yet, reason I don't have Pi cam 📷 yet, if you have pi cam try confirm that, I would be greatful, 😄 
+> the distance estimation pi_camera is not tested yet, reason I don't have Pi cam 📷 yet, if you have pi cam try confirm that, I would be greatful, 😄 Thank you so much
 
-Thank you so much
-I have also create <a href ="https://github.com/Asadullah-Dal17/Face-Following-Robot-using-Distance-Estimation"> <strong>Face Following Robot </strong> </a> which use distance Estimation, if you are interested you can Watch my<a href ="https://youtu.be/5FSOZe96kNg"> <strong>Youtube Video</strong> </a>
+I have also create <a href ="https://github.com/Asadullah-Dal17/Face-Following-Robot-using-Distance-Estimation"> <strong>Face Following Robot </strong> </a> which use distance Estimation, if you are interested you can Watch my<a href ="https://youtu.be/5FSOZe96kNg"> <strong>Youtube Video</strong> </a> 
+You can create Face Following Robot with Raspberry that would be easy then, using Arduino Stuff, Raspberry 🍓 Pi will make it system on Robot 🤖
 
 if You found this Helpful, please star :star: it.
 
