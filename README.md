@@ -27,7 +27,7 @@ https://user-images.githubusercontent.com/66181793/124917186-f5066b00-e00c-11eb-
 
 https://user-images.githubusercontent.com/66181793/138200943-74d28b4d-bd0e-49fd-8836-4a01b35118eb.mp4
 
-✔️ here is source code and details for Instllation on Opencv [Distance Estimation on Raspberry pi 🍓](https://github.com/Asadullah-Dal17/Distance_measurement_using_single_camera/tree/main/Raspberry_pi) 
+✔️ here is source code and details for Instllation of Opencv-python on 🍓 Pi 😃 [Distance Estimation on Raspberry pi 🍓](https://github.com/Asadullah-Dal17/Distance_measurement_using_single_camera/tree/main/Raspberry_pi) 
 
 
 :heavy_check_mark: I have included [**Speed Estimation**](https://github.com/Asadullah-Dal17/Distance_measurement_using_single_camera/tree/main/Speed) code is well check that out.
