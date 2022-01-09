@@ -23,6 +23,12 @@ https://user-images.githubusercontent.com/66181793/122644855-bb8ac000-d130-11eb-
 
 https://user-images.githubusercontent.com/66181793/124917186-f5066b00-e00c-11eb-93cf-24d84e9c2e7a.mp4
 
+## Distance Estimation on Raspberry Pi 🍓 
+
+https://user-images.githubusercontent.com/66181793/138200943-74d28b4d-bd0e-49fd-8836-4a01b35118eb.mp4
+
+✔️ here is source code and details for Instllation of Opencv-python on 🍓 Pi 😃 [Distance Estimation on Raspberry pi 🍓](https://github.com/Asadullah-Dal17/Distance_measurement_using_single_camera/tree/main/Raspberry_pi) 
+
 
 :heavy_check_mark: I have included [**Speed Estimation**](https://github.com/Asadullah-Dal17/Distance_measurement_using_single_camera/tree/main/Speed) code is well check that out.
 
@@ -102,7 +108,8 @@ This Funciton Taks Three Argument,
 
 
 
-I have also create <a href ="https://github.com/Asadullah-Dal17/Face-Following-Robot-using-Distance-Estimation"> <strong>Face Following Robot </strong> </a> which use distance Estimation, if you are interested you can Watch my<a href ="https://youtu.be/5FSOZe96kNg"> <strong>Youtube Video</strong> </a>
+I have also create <a href ="https://github.com/Asadullah-Dal17/Face-Following-Robot-using-Distance-Estimation"> <strong>Face Following Robot </strong> </a> which use distance Estimation, if you are interested you can Watch my<a href ="https://youtu.be/5FSOZe96kNg"> <strong>Youtube Video</strong> </a> 
+You can create Face Following Robot with Raspberry that would be easy then, using Arduino Stuff, Raspberry 🍓 Pi will make it system on Robot 🤖
 
 if You found this Helpful, please star :star: it.
 
@@ -113,6 +120,8 @@ If You have any Question or need help in CV Project, Feel free to DM on Instagra
 
 ## 💚🖤 Join me on Social Media 🖤💚 
 
-<h4><a href="https://www.youtube.com/c/aiphile"> YouTube <img alt="AiPhile Youtube" src="https://user-images.githubusercontent.com/66181793/131223988-882d53a0-4882-468f-9bd7-46b46466baae.png"  width="35"> </a> 
- <a href="https://github.com/Asadullah-Dal17">  GitHub  <img alt="GitHub" src="https://user-images.githubusercontent.com/66181793/131223930-9fd2bfc7-9c43-465d-a057-55f3292f3b2b.png"  width="35"> </a> 
+<h4><a href="https://www.youtube.com/c/aiphile"> YouTube  <img alt="AiPhile Youtube" src="https://user-images.githubusercontent.com/66181793/131223988-882d53a0-4882-468f-9bd7-46b46466baae.png"  width="35"> </a> 
+ <a href="https://github.com/Asadullah-Dal17">  GitHub   <img alt="GitHub" src="https://user-images.githubusercontent.com/66181793/131223930-9fd2bfc7-9c43-465d-a057-55f3292f3b2b.png"  width="35"> </a> 
+  <a href="https://medium.com/@asadullah92c">  Medium   <img alt="Medium" src="https://user-images.githubusercontent.com/66181793/146642235-bde4be12-603d-4eed-bd44-5b28829e17b3.png"  width="35"> </a> 
   <a href="https://www.instagram.com/aiphile17/">   Instagram <img alt="Instagram" src="https://user-images.githubusercontent.com/66181793/131223931-32d84c10-88b4-4cd6-8eb8-89f06c3b5b51.png"  width="35"> </a> </h4>
+ 
