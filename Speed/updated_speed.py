@@ -171,7 +171,7 @@ Focal_length_found = FocalLength(
     Known_distance, Known_width, ref_image_face_width)
 print(Focal_length_found)
 
-cv2.imshow("ref_image", ref_image)
+#cv2.imshow("ref_image", ref_image)
 speedMap = {}
 distanceMap = {}
 averageSpeed = {}
@@ -231,7 +231,7 @@ while True:
         cv2.putText(frame, f"{face_id}  Distance {roundedDistance} meter",
                     (face_x - 6, face_y - 6), fonts, 0.5, (BLACK), 2)
 
-    cv2.imshow("frame", frame)
+    #cv2.imshow("frame", frame)
     out.write(frame)
     print(distanceMap)
     print(distances)
