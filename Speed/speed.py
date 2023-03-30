@@ -40,7 +40,7 @@ cap = cv2.VideoCapture(0)
 fourcc = cv2.VideoWriter_fourcc(*'XVID')
 Recorder = cv2.VideoWriter('distanceAndSpeed2.mp4', fourcc, 15.0, (640, 480))
 # face detector object
-face_detector = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
+face_detector = cv2.CascadeClassifier("../haarcascade_frontalface_default.xml")
 # focal length finder function
 
 
@@ -116,7 +116,7 @@ def averageFinder(completeList, averageOfItems):
 
 
 # reading reference image from directory
-ref_image = cv2.imread("Ref_image.png")
+ref_image = cv2.imread("../Ref_image.png")
 
 ref_image_face_width = face_data(ref_image)
 Focal_length_found = FocalLength(

@@ -22,7 +22,7 @@ GREEN = (0, 255, 0)
 RED = (0, 0, 255)
 WHITE = (255, 255, 255)
 fonts = cv2.FONT_HERSHEY_COMPLEX
-cap = cv2.VideoCapture(1)
+cap = cv2.VideoCapture(0)
 
 # face detector object
 face_detector = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")

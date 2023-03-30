@@ -1,5 +1,6 @@
-import cv2
 import time
+
+import cv2
 
 # variables
 # distance from camera to object(face) measured
@@ -40,6 +41,8 @@ out = cv2.VideoWriter('output21.mp4', fourcc, 30.0, (640, 480))
 
 # face detector object
 face_detector = cv2.CascadeClassifier("../haarcascade_frontalface_default.xml")
+
+
 # focal length finder function
 
 
@@ -56,6 +59,8 @@ def FocalLength(measured_distance, real_width, width_in_rf_image):
     '''
     focal_length = (width_in_rf_image * measured_distance) / real_width
     return focal_length
+
+
 # distance estimation function
 
 
@@ -69,12 +74,12 @@ def Distance_finder(Focal_Length, real_face_width, face_width_in_frame):
     :return Distance(float) : distance Estimated  
 
     '''
-    distance = (real_face_width * Focal_Length)/face_width_in_frame
+    distance = (real_face_width * Focal_Length) / face_width_in_frame
     return distance
 
 
 def speedFinder(distance, takenTime):
-    speed = distance/takenTime
+    speed = distance / takenTime
     return speed
 
 
@@ -101,35 +106,45 @@ def face_data(image, CallOut, Distance_level):
     face_center_y = 0
     gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     faces = face_detector.detectMultiScale(gray_image, 1.3, 5)
-    for (x, y, h, w) in faces:
+
+    faces_with_id = []
+    # add id to each face in the faces array
+    for index, face in enumerate(faces):
+        x, y, w, h = face
+        faces_with_id.append([x, y, w, h, index + 1])
+
+    faces = faces_with_id
+
+    for (x, y, h, w, index) in faces:
+
         line_thickness = 2
         # print(len(faces))
-        LLV = int(h*0.12)
+        LLV = int(h * 0.12)
         # print(LLV)
 
         # cv2.rectangle(image, (x, y), (x+w, y+h), BLACK, 1)
-        cv2.line(image, (x, y+LLV), (x+w, y+LLV), (GREEN), line_thickness)
-        cv2.line(image, (x, y+h), (x+w, y+h), (GREEN), line_thickness)
-        cv2.line(image, (x, y+LLV), (x, y+LLV+LLV), (GREEN), line_thickness)
-        cv2.line(image, (x+w, y+LLV), (x+w, y+LLV+LLV),
+        cv2.line(image, (x, y + LLV), (x + w, y + LLV), (GREEN), line_thickness)
+        cv2.line(image, (x, y + h), (x + w, y + h), (GREEN), line_thickness)
+        cv2.line(image, (x, y + LLV), (x, y + LLV + LLV), (GREEN), line_thickness)
+        cv2.line(image, (x + w, y + LLV), (x + w, y + LLV + LLV),
                  (GREEN), line_thickness)
-        cv2.line(image, (x, y+h), (x, y+h-LLV), (GREEN), line_thickness)
-        cv2.line(image, (x+w, y+h), (x+w, y+h-LLV), (GREEN), line_thickness)
+        cv2.line(image, (x, y + h), (x, y + h - LLV), (GREEN), line_thickness)
+        cv2.line(image, (x + w, y + h), (x + w, y + h - LLV), (GREEN), line_thickness)
 
         face_width = w
         face_center = []
         # Drwaing circle at the center of the face
-        face_center_x = int(w/2)+x
-        face_center_y = int(h/2)+y
+        face_center_x = int(w / 2) + x
+        face_center_y = int(h / 2) + y
         if Distance_level < 10:
             Distance_level = 10
 
         # cv2.circle(image, (face_center_x, face_center_y),5, (255,0,255), 3 )
         if CallOut == True:
             # cv2.line(image, (x,y), (face_center_x,face_center_y ), (155,155,155),1)
-            cv2.line(image, (x, y-11), (x+180, y-11), (ORANGE), 28)
-            cv2.line(image, (x, y-11), (x+180, y-11), (YELLOW), 20)
-            cv2.line(image, (x, y-11), (x+Distance_level, y-11), (GREEN), 18)
+            cv2.line(image, (x, y - 11), (x + 180, y - 11), (ORANGE), 28)
+            cv2.line(image, (x, y - 11), (x + 180, y - 11), (YELLOW), 20)
+            cv2.line(image, (x, y - 11), (x + Distance_level, y - 11), (GREEN), 18)
 
             # cv2.circle(image, (face_center_x, face_center_y),2, (255,0,255), 1 )
             # cv2.circle(image, (x, y),2, (255,0,255), 1 )
@@ -144,7 +159,7 @@ def averageFinder(valuesList, numberElements):
     sizeOfList = len(valuesList)
     lastMostElement = sizeOfList - numberElements
     lastPart = valuesList[lastMostElement:]
-    average = sum(lastPart)/(len(lastPart))
+    average = sum(lastPart) / (len(lastPart))
     return average
 
 
@@ -157,10 +172,10 @@ Focal_length_found = FocalLength(
 print(Focal_length_found)
 
 cv2.imshow("ref_image", ref_image)
-speedList = []
-DistanceList = []
-averageSpeed = 0
-intialDisntace = 0
+speedMap = {}
+distanceMap = {}
+averageSpeed = {}
+initialDistance = {}
 
 while True:
     _, frame = cap.read()
@@ -169,47 +184,57 @@ while True:
     intialTime = time.time()
     face_width_in_frame, Faces, FC_X, FC_Y = face_data(
         frame, True, Distance_level)
+    distances = {}
     # finding the distance by calling function Distance finder
-    for (face_x, face_y, face_w, face_h) in Faces:
-        if face_width_in_frame != 0:
+    for (face_x, face_y, face_w, face_h, face_id) in Faces:
+        Distance = Distance_finder(Focal_length_found, Known_width, face_width_in_frame)
+        if face_id not in distanceMap or distanceMap[face_id] is None:
+            distanceMap[face_id] = []
 
-            Distance = Distance_finder(
-                Focal_length_found, Known_width, face_width_in_frame)
-            DistanceList.append(Distance)
-            avergDistnce = averageFinder(DistanceList, 6)
-            # print(avergDistnce)
-            roundedDistance = round((avergDistnce*0.0254), 2)
-            # Drwaing Text on the screen
-            Distance_level = int(Distance)
-            if intialDisntace != 0:
+        distanceMap[face_id].append(Distance)
+        if len(distanceMap[face_id]) > 6:
+            distanceMap[face_id].pop(0)
+        avergDistnce = averageFinder(distanceMap[face_id], 6)
+        # print(avergDistnce)
+        roundedDistance = round((avergDistnce * 0.0254), 2)
+        # Drwaing Text on the screen
+        Distance_level = int(Distance)
+        if face_id in initialDistance and initialDistance[face_id] != 0:
+            changeDistance = Distance - initialDistance[face_id]
+            distanceInMeters = changeDistance * 0.0254
 
-                changeDistance = Distance - intialDisntace
-                distanceInMeters = changeDistance * 0.0254
+            velocity = speedFinder(distanceInMeters, changeInTime)
 
-                velocity = speedFinder(distanceInMeters, changeInTime)
+            if face_id not in speedMap:
+                speedMap[face_id] = []
+            speedMap[face_id].append(velocity)
 
-                speedList.append(velocity)
+            averageSpeed[face_id] = averageFinder(speedMap[face_id], 6)
+        # intial Distance
+        initialDistance[face_id] = avergDistnce
 
-                averageSpeed = averageFinder(speedList, 6)
-            # intial Distance
-            intialDisntace = avergDistnce
+        changeInTime = time.time() - intialTime
+        # print(changeInTime)
 
-            changeInTime = time.time() - intialTime
-            # print(changeInTime)
+        cv2.line(frame, (25, face_id * 45), (180, face_id * 45), (ORANGE), 26)
+        cv2.line(frame, (25, face_id * 45), (180, face_id * 45), (GREEN), 20)
+        # cv2.line(image, (x, y-11), (x+180, y-11), (YELLOW), 20)
+        # cv2.line(image, (x, y-11), (x+Distance_level, y-11), (GREEN), 18)
+        if face_id not in averageSpeed:
+            averageSpeed[face_id] = 0
+        if averageSpeed[face_id] < 0:
+            averageSpeed[face_id] = averageSpeed[face_id] * -1
+        cv2.putText(
+            frame, f"{face_id} Speed: {round(averageSpeed[face_id], 2)} m/s", (30, 50 * face_id), fonts, 0.5, BLACK, 2)
 
-            cv2.line(frame, (25, 45), (180, 45), (ORANGE), 26)
-            cv2.line(frame, (25, 45), (180, 45), (GREEN), 20)
-            # cv2.line(image, (x, y-11), (x+180, y-11), (YELLOW), 20)
-            # cv2.line(image, (x, y-11), (x+Distance_level, y-11), (GREEN), 18)
-            if averageSpeed < 0:
-                averageSpeed = averageSpeed * -1
-            cv2.putText(
-                frame, f"Speed: {round(averageSpeed,2)} m/s", (30, 50), fonts, 0.5, BLACK, 2)
+        distances[face_id] = roundedDistance
+        cv2.putText(frame, f"{face_id}  Distance {roundedDistance} meter",
+                    (face_x - 6, face_y - 6), fonts, 0.5, (BLACK), 2)
 
-            cv2.putText(frame, f"Distance {roundedDistance} meter",
-                        (face_x-6, face_y-6), fonts, 0.5, (BLACK), 2)
     cv2.imshow("frame", frame)
     out.write(frame)
+    print(distanceMap)
+    print(distances)
 
     if cv2.waitKey(1) == ord("q"):
         break
