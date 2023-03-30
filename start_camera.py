@@ -13,7 +13,17 @@ def main():
             alert(distance, speed, frame)
 
 
+def send_frame(frame):
+    pass
+
+
+def notify_server(distance, speed):
+    pass
+
+
 def alert(distance, speed, frame):
+    send_frame(frame)
+    notify_server(distance, speed)
     print(f"ALERT: distance: {distance} , speed: {speed}")
 
 
