@@ -1,6 +1,9 @@
+import sys
 import time
 
 import cv2
+
+gui = sys.argv[1] == 'gui'
 
 # variables
 # distance from camera to object(face) measured
@@ -151,6 +154,7 @@ def face_data(image, CallOut, Distance_level):
 
         # face_x = x
         # face_y = y
+        break
 
     return face_width, faces, face_center_x, face_center_y
 
@@ -171,7 +175,9 @@ Focal_length_found = FocalLength(
     Known_distance, Known_width, ref_image_face_width)
 print(Focal_length_found)
 
-#cv2.imshow("ref_image", ref_image)
+
+if gui:
+    cv2.imshow("ref_image", ref_image)
 speedMap = {}
 distanceMap = {}
 averageSpeed = {}
@@ -200,7 +206,7 @@ while True:
         # Drwaing Text on the screen
         Distance_level = int(Distance)
         if face_id in initialDistance and initialDistance[face_id] != 0:
-            changeDistance = Distance - initialDistance[face_id]
+            changeDistance = initialDistance[face_id] - Distance
             distanceInMeters = changeDistance * 0.0254
 
             velocity = speedFinder(distanceInMeters, changeInTime)
@@ -222,8 +228,6 @@ while True:
         # cv2.line(image, (x, y-11), (x+Distance_level, y-11), (GREEN), 18)
         if face_id not in averageSpeed:
             averageSpeed[face_id] = 0
-        if averageSpeed[face_id] < 0:
-            averageSpeed[face_id] = averageSpeed[face_id] * -1
         cv2.putText(
             frame, f"{face_id} Speed: {round(averageSpeed[face_id], 2)} m/s", (30, 50 * face_id), fonts, 0.5, BLACK, 2)
 
@@ -231,7 +235,9 @@ while True:
         cv2.putText(frame, f"{face_id}  Distance {roundedDistance} meter",
                     (face_x - 6, face_y - 6), fonts, 0.5, (BLACK), 2)
 
-    #cv2.imshow("frame", frame)
+        break
+    if gui:
+        cv2.imshow("frame", frame)
     out.write(frame)
     print(distanceMap)
     print(distances)
