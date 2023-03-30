@@ -4,6 +4,7 @@ import time
 import cv2 as cv
 import AiPhile
 
+WHITE = (255, 255, 255)
 # variables
 # distance from camera to object(face) measured
 KNOWN_DISTANCE = 76.2  # centimeter
