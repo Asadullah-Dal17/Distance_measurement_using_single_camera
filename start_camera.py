@@ -10,11 +10,12 @@ def main():
     for (distance, speed, frame) in get_incoming_danger(gui):
         # print(f"distance: {distance} , speed: {speed}")
         if should_alert(distance, speed):
-            alert(distance, speed)
+            alert(distance, speed, frame)
 
 
-def alert(distance, speed):
+def alert(distance, speed, frame):
     print(f"ALERT: distance: {distance} , speed: {speed}")
+
 
 def should_alert(distance, speed):
     return distance < 2 and speed > 3 or distance < 0.5
