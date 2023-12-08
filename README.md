@@ -128,10 +128,6 @@ I am avalaible for paid work here <a href="https://www.fiverr.com/asadullah_ar">
     <img src="https://img.shields.io/badge/YouTube-red?style=for-the-badge&logo=youtube&logoColor=white" alt="Youtube Badge"/>
   </a>
 
-<!-- Fiverr Badge -->
-   <a href="https://www.fiverr.com/asadullah_ar">
-    <img src="https://img.shields.io/badge/Fiverr-fiverr?style=for-the-badge&logo=Fiverr&logoColor=black" alt="Fiverr Badge"/>
-  </a> 
 <!-- Instagram Badge  -->
   <a href="https://www.instagram.com/aiphile17">
     <img src="https://img.shields.io/badge/Instagram-purple?style=for-the-badge&logo=Instagram&logoColor=white" alt="Medium Badge"/>
